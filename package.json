@@ -14,7 +14,8 @@
     "timeago.js": "^4.0.2"
   },
   "scripts": {
-    "dev": "node src/index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "node src/index.js"
+    
   }
 }
