@@ -1,6 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
-
+const MySQLStore = require('express-mysql-session')
 const path = require('path')
 const flash = require('connect-flash')
 const session = require('express-session')
@@ -9,7 +9,7 @@ const passport = require('passport')
 const cors = require("cors");
 const jwt = require('jsonwebtoken')
 const keys = require('./src/keys')
-
+const { database } = require('./src/keys')
 
 ////
 
@@ -29,13 +29,15 @@ app.set('views', path.join(__dirname, 'views')) // indica donde esta la carpeta 
 app.set('view engine', '.hbs')
 
 
-//middlwares
-/* app.use(session({
-    secret: 'faztmysqlnodesession',
+
+////middleware
+
+app.use(session({
+    secret: 'asdasd1234',
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore(database)
-})) */
+})) 
 
 app.use(flash())
 app.use(morgan('dev'))
