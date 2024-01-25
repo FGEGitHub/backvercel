@@ -6,7 +6,7 @@ module.exports = {
         //  user: 'admin',
         password: 'root',
        //password:'11235',
-        database: 'fideicomiso'
+        database: 'marketing'
     },
     auth: {
 

@@ -1,15 +1,17 @@
 const express = require('express')
 const morgan = require('morgan')
 const MySQLStore = require('express-mysql-session')
+
 const path = require('path')
 const flash = require('connect-flash')
 const session = require('express-session')
 //const MySQLStore = require('express-mysql-session')
+const { database } = require('./keys')
 const passport = require('passport')
 const cors = require("cors");
 const jwt = require('jsonwebtoken')
-const keys = require('./src/keys')
-const { database } = require('./src/keys')
+const keys = require('./keys')
+
 
 ////
 
@@ -17,7 +19,7 @@ const { database } = require('./src/keys')
 
 //inicializacion
 const app = express()
-require('./src/lib/passport')
+require('./lib/passport')
 app.set('key', keys.key)
 
 //settings
@@ -29,15 +31,13 @@ app.set('views', path.join(__dirname, 'views')) // indica donde esta la carpeta 
 app.set('view engine', '.hbs')
 
 
-
-////middleware
-
-/* app.use(session({
+//middlwares
+ app.use(session({
     secret: 'asdasd1234',
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore(database)
-}))  */
+})) 
 
 app.use(flash())
 app.use(morgan('dev'))
@@ -59,12 +59,12 @@ app.use((req, res, next) => {
 
 
 //routes
-app.use(require('./src/routes/index'))
+app.use(require('./routes/index'))
 //app.use(require('./routes/authentication'))
 
 
 
-app.use(express.static(path.join(__dirname, './pdfs')))
+app.use(express.static(path.join(__dirname, '../pdfs')))
 app.use(express.static(path.join(__dirname, 'pdfs')))
 //public  
 app.use(express.static(path.join(__dirname, 'public')))
